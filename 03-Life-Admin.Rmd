@@ -1,0 +1,138 @@
+# Life Admin
+
+This contains information that I usually have to look up in an emergency or to feed
+the daily bureaucracy we encounter `<sigh!>`.
+
+## Government
+
+**Tax Authority**
+```
+<censored>
+  - Tax reference number / Social Security
+  - Address
+  - Customer service telephone number
+  - Website
+  - Secure login site
+```
+
+**Residency related**
+```
+<censored>
+  - Residency / ID card number
+  - Address
+  - Customer service telephone number
+  - Website
+  - Secure login website
+```
+
+**Healthcare**
+```
+<censored>
+Government
+  - Healthcare number
+  - Address
+  - Customer service telephone number
+  - Website
+  - Secure login website
+  
+Insurance
+  - Insurance reference number
+  - Address
+  - Customer service telephone number
+  - Website
+  - Secure login website
+
+```
+
+## Utilities
+
+**Electricity**
+```
+<censored>
+
+Information to include:
+  - Customer reference number
+  - Address
+  - Customer service telephone number
+  - Website
+  - Secure login site
+  - Emergency contact info
+```
+
+**Gas**
+```
+See Electricity for template.
+```
+
+**Water**
+```
+See Electricity for template.
+```
+
+**Internet, telephone, cable**
+```
+<censored>
+```
+
+**Mobile phone**
+```
+See Electricity for template.
+```
+
+
+## Financial
+
+**Bank Name**
+```
+<censored>
+
+Information to include:
+  - Account numbers
+  - Bank Address
+  - Customer service telephone number
+  - Website
+  - Secure login site
+  - Emergency contact info
+```
+
+**Credit cards**
+```
+<censored>
+
+Information to include:
+  - Card numbers
+  - Provider
+  - Customer service telephone number
+  - Website
+  - Secure login site
+  - Emergency contact info (for cancellations)
+```
+
+
+**Pensions**
+```
+<censored>
+
+Information to include:
+  - Pension Plan Number
+  - Provider
+  - Address
+  - Customer service telephone number
+  - Website
+  - Secure login site
+```
+
+
+
+## Address Change
+
+Inform the following of any change in address:
+
+* Tax authority
+* Government residency 
+* Banks
+* Pension providers 
+* Family member 1
+* ..
+* Family member n
+

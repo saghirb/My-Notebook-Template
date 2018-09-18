@@ -1,0 +1,41 @@
+# Address Book Plus
+
+## Birthdays & Anniversaries
+
+```{r reminders, eval = TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+options(knitr.kable.NA = '.')
+
+rem <- readODS::read_ods("Data/Reminders.ods") %>%
+  as_tibble() %>% 
+  mutate(Date = paste(Day, Month, Year, sep="-")) %>% 
+  rename(nMonth = Month) %>% 
+  mutate(Month = month(nMonth, label = TRUE))
+
+rem %>%
+  arrange(Type, nMonth, Day, Name) %>% 
+  select(Type, Month, Date, Name) %>%
+  kable(booktabs = TRUE) %>%
+  kable_styling(full_width = F) %>%
+  collapse_rows(1:2, valign = "top")
+```
+
+
+## People Info
+
+
+```{r addressBook, eval = TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+ab <- readODS::read_ods("Data/AddressBook.ods",
+                        col_types =cols(
+                          Name = col_character(),
+                          Telephone = col_character(),
+                          Address = col_character(),
+                          Country = col_character()
+                          )) %>%
+  as_tibble() %>%
+  arrange(Name)
+
+ab %>%
+  select(-Country) %>%
+  kable(booktabs = TRUE) %>%
+  kable_styling(full_width = F)
+```

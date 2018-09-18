@@ -1,0 +1,17 @@
+# People Facts
+
+Useful to know things when socialising with family or friends.
+
+```{r peopleFacts, eval = TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+pf <- readODS::read_ods("Data/PeopleFacts.ods",
+                        col_types =cols(
+                          Name = col_character(),
+                          Fact = col_character()
+                          )) %>%
+  as_tibble() %>%
+  arrange(Name)
+
+pf %>%
+  kable(booktabs = TRUE) %>%
+  kable_styling(full_width = F)
+```

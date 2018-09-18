@@ -1,0 +1,26 @@
+# Useful Links {#Links}
+
+`<Section simplified>`
+
+```{r usefulLinks, eval = TRUE, echo=FALSE, message=FALSE, results='asis'}
+ul <- readODS::read_ods("Data/UsefulLinks.ods") %>% 
+  as_tibble() %>% 
+  mutate(DescLink = paste0("[", Description, "](", Link, ")")) %>% 
+  arrange(Order, Description) 
+
+itemized <- ul %>% 
+  group_by(Group) %>% 
+  mutate(heading = case_when(
+    row_number() == 1 ~ paste0("\n\n## ", Group, "\n\n"),
+    TRUE             ~ ""
+  )
+  ) %>% 
+  mutate(item = paste0(heading, "- ", DescLink, "\n")) %>% 
+  ungroup() %>% 
+  select(item) %>% 
+  as_vector()
+
+cat(itemized)
+```
+
+

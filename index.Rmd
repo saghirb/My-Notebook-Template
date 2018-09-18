@@ -1,0 +1,63 @@
+--- 
+title: "Saghir's Notebook"
+always_allow_html: yes
+author: ""
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Saghir's personal notebook. Not particularly useful for others."
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(readODS)
+library(knitr)
+library(kableExtra)
+```
+
+# Administrative Info
+
+**Personal**[^copypaste]
+```
+Saghir Bashir
+Address Line 1
+Address Line 2
+Address Line 3
+Country
+
+Tel: +xx 123 456 789
+GSM: +xx 987 654 321
+
+Email: example@example.com
+Website: (https://dsup.org)
+SS Number: AAA-NNNNNNNNNN
+...
+```
+
+**Professional**
+```
+Organisation Name
+Address Line 1
+Address Line 2
+Address Line 3
+Country
+
+
+Tel: +xx 321 456 789
+GSM: +xx 789 654 321
+
+Email: work@example.com
+Website: (https://ilustat.com)
+
+Emergency Contact: <HR Depart?>
+Emergency Phone: <Number>
+Emergency Email: <sick@example.com>
+```
+
+
+[^copypaste]: Copy & Paste friendly versions

@@ -1,0 +1,68 @@
+# Data Science
+
+## Statistics
+
+`<Section Cut>`
+
+## Rstats
+
+* [Writing a package by Tomas Westlake](https://r-mageddon.netlify.com/post/writing-an-r-package-from-scratch/)
+
+**tidyverse**
+
+* [Suazan Baert dplyr Presentation Amsterdam 2018](https://github.com/suzanbaert/SatRdaysAmsterdam18_dplyr)
+* [Jenny Bryan's Row-oriented workflows in R with the tidyverse](https://github.com/jennybc/row-oriented-workflows)
+
+
+**purrr Package**
+
+* [Introduction to purrr](https://github.com/jenniferthompson/RLadiesIntroToPurrr)
+* [Jenny Bryan's purrr Tutorial](https://jennybc.github.io/purrr-tutorial/)
+
+## Git & Github
+
+**Some useful references:**
+
+* [Happy Git and GitHub for the useR](http://happygitwithr.com/) -- Jenny Bryan
+* [Git guides ](Happy Git and GitHub for the useR)  -- Mara Averick
+* [Git and GitHub](http://r-pkgs.had.co.nz/git.html)  -- R Packages by Hadley Wickham
+* [Version control with Git](https://rmhogervorst.nl/cleancode/blog/2016/03/01/content/post/2016-03-01-version-control-start/) -- Roel Hogervorst
+
+
+**Working with a remote upstream libary**
+
+```
+  git remote -v
+  git fetch upstream
+  git checkout master
+  git merge upstream/master
+```
+
+## Books
+
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+* [Bookdown](https://bookdown.org/yihui/bookdown/)
+* [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/)
+* [R fo Data Science](http://r4ds.had.co.nz/)
+* [Data Visualization](https://socviz.co/)
+* [Handling Strings with R](Handling Strings with R)
+* [Efficient R programming](https://bookdown.org/csgillespie/efficientR/)
+* [Advanced R](https://adv-r.hadley.nz/)
+* [Data Science at the Command Line](https://www.datascienceatthecommandline.com/)
+
+## R code
+
+**tidyverse stuff**
+
+* [Getting Started in R](https://github.com/saghirb/Getting-Started-in-R)
+
+**flexdashboard**
+
+* [Chick weight data flexdashboard](https://github.com/saghirb/Chick_Weight_Flexdashboard)
+
+**R Shiny**
+
+* [Chick weight data app](https://github.com/saghirb/Chick_Weight_Basic_App)
+* [Portuguese Nutrition App](https://github.com/saghirb/Nutri_PT)
+
+`<cut>`

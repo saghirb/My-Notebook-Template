@@ -1,0 +1,35 @@
+# Bookmarks {#bookmarks}
+
+```{r bookmarks, eval = TRUE, echo=FALSE, message=FALSE, results='asis'}
+# bm <- readODS::read_ods("Data/Bookmarks.ods") %>% 
+#   as_tibble() %>% 
+#   mutate(Bookmark = paste0("[", Description, "](", Link, ")")) %>% 
+#   arrange(Order, Description) 
+# 
+# bm %>% 
+#   select(Group, Bookmark) %>% 
+#   kable(booktabs = TRUE) %>% 
+#   kable_styling(full_width = F) %>% 
+#   collapse_rows(1, valign = "top")
+
+bm <- readODS::read_ods("Data/Bookmarks.ods") %>%   
+  as_tibble() %>% 
+  mutate(Bookmark = paste0("[", Description, "](", Link, ")")) %>% 
+  arrange(Order, Description) 
+
+bmItem <- bm %>% 
+  group_by(Group) %>% 
+  mutate(heading = case_when(
+    row_number() == 1 ~ paste0("\n\n**", Group, "**\n\n"),
+    TRUE             ~ ""
+  )
+  ) %>% 
+  mutate(item = paste0(heading, "- ", Bookmark, "\n")) %>% 
+  ungroup() %>% 
+  select(item) %>% 
+  as_vector()
+
+cat(bmItem)
+```
+
+

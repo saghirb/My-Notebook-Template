@@ -1,0 +1,318 @@
+# Linux
+
+## Command line - bash
+
+**Finding duplicates files** `fdupes -rSm . > duplicates.txt`
+
+**DANGEROUS - Removing duplicates automatically - DANGEROUS** `fdupes -rdN`
+
+**Recursively shred/erase** `find <dir> -depth -type f -exec shred -v -n 1 -z -u {} \;`
+
+**Find largest file in a directory and subdirectories** 
+```
+find <dir> -printf '%s %p\n'| sort -nr | head -10`
+find . -type f -size +10000k -exec ls -lh {} \;
+```
+
+**Disk usage by directory (human readable form)** `du -h --max-depth=1 | sort -h`
+
+**Rename files using string matching** `rename 's/JPG/jpg/g' *.JPG`
+
+**Rename recursively through sub directories** `find . -depth -exec rename 's/JPG/jpg/g' {} +`
+
+**Randomly order the lines in a file** `shuf -n 1 $FILE`
+
+**Unique file exensions** `find * | awk -F . {'print $2'} | sort | uniq -c`
+
+**Randomly select words of any length** `cat /usr/share/dict/british-english | shuf -n 10`
+
+**Randomnly select words of length 6** 
+```
+grep -E '^[[:alpha:]]{6}$' /usr/share/dict/british-english | shuf -n 10
+```
+
+**Translate words** `dict -d <dict> <word>`
+
+**Available dictionaries** `dict -I` or `dict -D`
+
+**Weather** `curl wttr.in/london`
+
+**Extract filename and extension in bash**
+```{bash}
+FILE="example.tar.gz"
+echo "${FILE%%.*}"
+echo "${FILE%.*}"
+echo "${FILE#*.}"
+echo "${FILE##*.}"
+```
+
+## Backups 
+
+**tar**
+```
+tar -cvpzf backup.tar.gz --exclude=/backup.tar.gz --one-file-system / 
+sudo tar --exclude='/home/user/???' --exclude='/home/user/???' cvpf destination.tar  /home/user
+# Reset numeric owner (useful for sharing between systems)
+tar --numeric-owner --group=1000 --owner=1000 ... 
+```
+
+**rsync**
+```
+rsync -rtvu --exclude "Pictures" --exclude "Downloads" --exclude "Music" /home/user/ /media/.../
+rsync -rtvu --delete source_folder/ destination_folder/
+```
+
+**Command line Weather** `curl wttr.in/lisbon`
+
+**Extract links from web page** `lynx -listonly -nonumbers -dump http://www.example.com`
+
+## PDF & LaTeX
+
+**Split a pdf file** `pdftk file.pdf cat 12-15 output outfile_p12-15.pdf`
+
+**Merge pdf files** `pdftk file1.pdf file2.pdf cat output out.pdf`
+
+**PDF Total number of pages** `exiftool -T -filename -PageCount -s3 -ext pdf <dir>`
+
+**Converting a text file to PDF** `pandoc file.txt -o file.pdf`
+
+**Converting a text file to HTML** `pandoc file.txt -o file.html`
+
+**Converting images to PDF** `convert -page A4 img1.jpg -append img2.jpg -append img.pdf`
+
+**Stamping/overlaying a PDF file** `pdftk file.pdf multistamp stamp.pdf output Stamped.pdf`
+
+**PDF to PNG or JPG (images) handles multiple pages**
+```
+pdftoppm -png file.pdf outFileStem
+pdftoppm -jpeg -gray file.pdf outFileStem
+```
+
+**Clean file names (-n for dryrun)** `detox -r -v <dir>` e.g. `detox -r -v $(pwd)`
+
+
+**Unencryting PDFs** 
+```
+gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=unencrypted.pdf \
+  -c .setpdfwrite -f encrypted.pdf
+```
+
+**Script to create handouts for course notes**
+```
+#!/bin/sh
+
+for pdffile in slides1.pdf slides2.pdf slides3.pdf     
+do  
+  pdfjam --batch --nup 2x2 --scale 0.8 --frame true --a4paper --landscape \
+         --delta "0.7cm 0.7cm" --suffix "4up" --outfile . $pdffile
+done     
+
+pdfjoin --outfile Handouts.pdf slides1-4up.pdf slides2-4up.pdf slides3-4up.pdf
+```
+
+## Image & Video Processing
+
+**Before Sharing Photos** 
+```
+# exiftool part explained below.
+exiftool -r '-FileName<CreateDate' -d 'DESCRIPTION_%Y%m%d-%H%M%S%%-c.%%le' .
+mogrify -strip *.jpg
+```
+
+**Remove EXIF info and resize** `mogrify -strip -resize 25% *.JPG`
+
+**Rotate photos by 90 degrees** `mogrify -rotate 90 *JPG`
+
+**Convert from jpg to PDF** `convert *.JPG pics.pdf`
+
+**Rename files using EXIF information**
+**Rename with date and time from EXIF info**
+
+
+** Rename image files per EXIF data**
+
+*Source:* (https://superuser.com/questions/205417/sort-and-rename-images-by-date-in-exif-info)
+
+> On Linux you can use the command exiftool. For some reason the online manual does not contain the "RENAMING EXAMPLES" section which gave me the essential hint. For JPG only files the following command invocation should do the job
+
+```
+exiftool -r '-FileName<CreateDate' -d 'XXXX_%Y%m%d-%H%M%S%%-c.%%le' .
+# To arrange in folders by year
+exiftool -r '-FileName<CreateDate' -d '/home/user/Pictures/Keep/%Y/Orig_%Y%m%d-%H%M%S%%-c.%%le' <dir>
+
+```
+**Explanation:**
+
+> -r is for recursion
+
+>  '-FileName<CreateDate' tells exiftool to rename the file accordingly to its 
+  EXIF tag CreateDate (you can try others like ModifyDate though)
+
+>  -d '%Y%m%d-%H%M%S%%-c.%%le' tells how to build the filename string from 
+  the date source "CreateDate" (the "%-c" will append a counter in case of 
+  file collisions, the "%le" stands for "lower cased file extension")
+
+>  Note: I used "-FileName<..." here for renaming the files and moving it to
+  another folder within one step. The manual points out that you have to use
+  the "-Directory<..." syntax for folder operations. It worked for me this way though.
+
+
+**Video file info to CSV**
+```
+exiftool -r -imagewidth -imageheight -duration -filesize -csv * > temp.csv
+```
+*Source:* (https://superuser.com/questions/205417/sort-and-rename-images-by-date-in-exif-info)
+*Short link:* http://bit.ly/1HhFcfO
+
+**Remove camera related info** `exiftool -MakerNotes:all='' *.JPG`
+
+**Convert webm to mp4** `ffmpeg -i "v1.webm" -qscale 0 "v1.mp4"`
+
+**Convert webm to mp4 recursively** Two methods
+```
+find -name "*.webm" -exec ffmpeg -i {} -qscale 0 {}.mp4 \;
+```
+
+```
+for i in *.webm ; do 
+    ffmpeg -i "$i" -qscale 0 $(basename "${i/.webm}").mp4
+    sleep 60 
+done
+```
+
+## Security
+
+**Checksum**
+
+*Source:* (https://askubuntu.com/questions/318530/generate-md5-checksum-for-all-files-in-a-directory)
+
+> great checksum creation/verification program is rhash. It creates even SFV compatible 
+files, and checks them too. It supports md4, md5, sha1, sha512, crc32 and many many other.
+Moreover it can do recursive creation (-r option) like md5deep or sha1deep.
+Last but not least you can format the output of the checksum file; for example:
+
+```
+rhash -r --md5 -p '%h,%p /home/\n'
+```
+> outputs a CSV file including the full path of files.
+
+**Encrpyted compressed 7zip archive**
+```
+7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p'eat_my_shorts' archive.7z dir1
+```
+
+|option           | Details                                                        |
+|----------------:|:---------------------------------------------------------------|
+|a                | Add (dir1 to archive.7z)                                       |
+|-t7z             | Use a 7z archive                                               |
+|-m0=lzma2        | Use lzma2 method                                               |
+|-mx=9            | Use the '9' level of compression = Ultra                       |
+|-mfb=64          | Use number of fast bytes for LZMA = 64                         |
+|-md=32m          | Use a dictionary size = 32 megabytes                           |
+|-ms=on           | Solid archive = on                                             |
+|-mhe=on          | 7z format only : enables or disables archive header encryption |
+|-p{Password}     | Add a password                                                 |
+
+
+## System & Hardware
+
+**Useful commands (see man pages)** `dmidecode`, `lshw`, `inxi` (prefer `inxi`)
+
+**Identify hardware model and other info** 
+
+```
+sudo dmidecode -t1
+inxi -M
+inxi -bxx
+lshw -short
+
+```
+
+**Identify installed Linux Distro** `lsb_release -a`
+
+
+## Debian
+
+**Debian Packages of R Software:** Backports info at (https://cran.r-project.org/bin/linux/debian/)
+
+**Version installed** `lsb_release -a`
+
+**All currently installed packages.**
+```
+dpkg --get-selections
+dpkg-query -l
+# Just extracting package names
+apt-mark showmanual
+dpkg-query -f '${binary:Package}\n' -W
+```
+
+**Install packages from a file** `apt-get install $(grep -vE "^\s*#" filename  | tr "\n" " ")`
+
+**Recreating a partition table (via root) - USE WITH CARE**
+```
+cfdisk /dev/sdx
+mkfs -t vfat /dev/dsx1
+```
+
+## Misc
+
+**Get MS Windows Key** `sudo cat /sys/firmware/acpi/tables/MSDM`
+
+*Source:* (https://askubuntu.com/questions/953126/can-i-recover-my-windows-product-key-from-ubuntu)
+
+
+**Calendar with history** (https://akr.am/blog/posts/today-in-history-brought-to-you-by-unix)
+
+**Speech to text**
+
+*Source:* (https://askubuntu.com/questions/161515/speech-recognition-app-to-convert-mp3-to-text)
+
+The software you can use is CMUSphinx. Unlike suggested in another answer Julius is not suitable because it requires models. Models for large vocabulary speech recognition are not available for Julius.
+
+You can use pocketsphinx to convert audio file. Those two commands must do the work. First you convert the file to the required format and then you recognize it:
+```
+ffmpeg -i file.mp3 -ar 16000 -ac 1 file.wav
+```
+Then run pocketsphinx (results in `file.txt`)
+```
+pocketsphinx_continuous -infile file.wav 2> pocketsphinx.log > file.txt
+```
+
+**Text to Speech**
+
+**pico2wave** The voice is more human sounding.
+
+Save the following as `tts.sh`
+```
+#!/bin/bash
+pico2wave -l=en-GB -w=/tmp/test.wav "$1"
+aplay /tmp/test.wav
+rm /tmp/test.wav
+```
+Test it with:
+./tts.sh "Hello World! Where are you living? Since when."
+
+You can also use a file:
+```
+pico2wave -l=en-GB -w=test.wav "$(cat file.txt)"
+```
+
+**espeak** A robotic voice with more language choices.
+```
+espeak --stdout "this is a test" | paplay
+echo "these are my notes" > text.txt
+espeak --stdout -f text.txt > text.wav
+paplay text.wav
+```
+
+**Correcting file names**
+
+The detox utility renames files to make them easier to work with.  It removes spaces and other 
+such annoyances.  It'll also translate or cleanup Latin-1 (ISO 8859-1) characters encoded in 8-bit 
+ASCII, Unicode characters encoded in UTF-8, and CGI escaped characters.
+```
+detox -s iso8859_1 -r -v -n /tmp/new_files
+```
+Will run the sequence iso8859_1 recursively, listing any changes, without changing anything, 
+on the files of /tmp/new_files.
+

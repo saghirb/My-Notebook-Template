@@ -1,0 +1,53 @@
+# Docker {#docker}
+
+**Remove containers**
+```
+docker ps
+docker ps -a
+docker rm $(docker ps -qa --no-trunc --filter "status=exited")
+```
+
+**How to cleanup (unused) resources (use carefully)**
+
+*Source:* (https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)
+```
+dcleanup(){
+    docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+    docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+```
+
+> Once in a while, you may need to cleanup resources (containers, volumes, images, networks) ...
+delete volumes
+
+Source: (https://github.com/chadoe/docker-cleanup-volumes)
+```
+docker volume rm $(docker volume ls -qf dangling=true)
+docker volume ls -qf dangling=true | xargs -r docker volume rm
+```
+
+**Delete networks**
+```
+docker network ls  
+docker network ls | grep "bridge"   
+docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
+```
+
+**Rocker - R & RStudio in container** 
+
+* See [Rocker wiki](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image) for
+more information.
+
+Login: rstudio  -- Password: rstudio
+```
+docker run -d -p 8787:8787 -v $(pwd):/home/rstudio rocker/r-base
+docker run -d -p 8787:8787 -v $(pwd):/home/rstudio rocker/tidyverse
+docker run -d -p 8787:8787 -v $(pwd):/home/rstudio rocker/verse
+```
+
+
+**Apache**
+```
+docker run -p 80:80 -dit --name http24 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4
+```
+
