@@ -2,6 +2,8 @@
 
 *Saghir's Notebook 'Wiki':* an alternative use of `bookdown` as a "wiki".
 
+**Source available from** [https://github.com/saghirb/My-Notebook-Template](https://github.com/saghirb/My-Notebook-Template)
+
 ## Book For One Person - Me
 
 **Objective:** To quickly access notes, personal information, coding tips, reference links, birthdays, addresses, telephone numbers, *etc.* in one place.
