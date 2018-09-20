@@ -1,8 +1,8 @@
 --- 
-title: "Saghir's Notebook"
+title: "Saghir's Notebook 'Wiki'"
 always_allow_html: yes
 author: ""
-date: "`r Sys.Date()`"
+date: 'Version: `r format(Sys.time(), "%d %B %Y (%H:%M)")`'
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -34,7 +34,7 @@ Tel: +xx 123 456 789
 GSM: +xx 987 654 321
 
 Email: example@example.com
-Website: (https://dsup.org)
+Website: http://dsup.org
 SS Number: AAA-NNNNNNNNNN
 ...
 ```
@@ -52,12 +52,16 @@ Tel: +xx 321 456 789
 GSM: +xx 789 654 321
 
 Email: work@example.com
-Website: (https://ilustat.com)
+Website: http://ilustat.com
 
 Emergency Contact: <HR Depart?>
 Emergency Phone: <Number>
 Emergency Email: <sick@example.com>
 ```
 
+* [Speaker Deck (saghirb)](https://speakerdeck.com/saghirb)
+* [Medium (saghirb)](https://medium.com/@saghirb)
+* [ilustat](http://ilustat.com/)
+* [Data Science Unplugged (dsup)](http://dsup.org/)
 
 [^copypaste]: Copy & Paste friendly versions
