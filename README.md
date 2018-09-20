@@ -1,6 +1,6 @@
 # My-Notebook-Template
 
-"Saghir's Notebook". An alternative use of `bookdown` as a "wiki".
+*Saghir's Notebook 'Wiki':* an alternative use of `bookdown` as a "wiki".
 
 ## Book For One Person - Me
 
@@ -11,15 +11,17 @@
 * To have key personal information and notes at my finger tips.
 * All in one place.
 * Hosted **locally** (due to sensitive info) on my computers and smart phone.
-* Easy to maintain and update (hence not a wiki).
+* Easy to maintain and update.
 
-**How?** Using the HTML version of R `bookdown` book as a personal wiki as it can be copied (synced) across devices. Default bookdown HTML stlye is more than good enough.
+**How?** 
+
+Using the HTML version of R `bookdown` book as a personal wiki which can be copied (synced) across devices. Default bookdown HTML stlye is more than good enough.
 
 **Pros:** 
 
 * All my key information is one place :):):)
 * Immediately available on my browser (default homepage).
-* No more random files with notes, bits of paper, post-it notes, *etc.*
+* No more random files with notes, bits of paper, post-it notes, bookmarks, *etc.*
 * Copy and paste friendly.
 * As the only reader I can organise and re-organise it as I please.
 * Easy to maintain and update. 
