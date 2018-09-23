@@ -2,6 +2,10 @@
 
 *Saghir's Notebook 'Wiki':* an alternative use of `bookdown` as a "wiki".
 
+**Submitted to RStudio's Bookdown Contest at:** https://community.rstudio.com/t/bookdown-contest-submission-saghirs-notebook-wiki/14658
+
+**Demo website available at:** https://saghirb.github.io/My-Notebook-Template/
+
 **Source available from** [https://github.com/saghirb/My-Notebook-Template](https://github.com/saghirb/My-Notebook-Template)
 
 ## Book For One Person - Me
