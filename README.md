@@ -2,6 +2,11 @@
 
 *Saghir's Notebook 'Wiki':* an alternative use of `bookdown` as a "wiki".
 
+> **Important note:** I should have called this "My-Example-Notebook-Wiki" or something 
+similar. It is not a template in the traditional sense and was only intended to mean 
+"my example structure and content" (i.e. showcase). I will leave the repository name 
+as it is to prevent having broken links elsewhere. 
+
 **Submitted to RStudio's Bookdown Contest at:** https://community.rstudio.com/t/bookdown-contest-submission-saghirs-notebook-wiki/14658
 
 **Demo website available at:** https://saghirb.github.io/My-Notebook-Template/
